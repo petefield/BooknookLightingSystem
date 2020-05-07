@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+
+<head>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO' crossorigin='anonymous'>    
+
+    <style>
+        /*Custom Base*/
+body {
+  background-color: #eee;
+}
+
+/* #container {
+  width: 300px;
+  margin: 20vw auto;
+} */
+
+input[type="range"] {
+  width: 300px;
+  background: transparent;
+}
+/*###################################*/
+/*###########Responsive Range########*/
+/*###################################*/
+/*##############Core Style###########*/
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+/*#############Thumb##############*/
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 36px;
+  width: 36px;
+  background: #555;
+  cursor: pointer;
+  margin-top: -12px;
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 36px;
+  width: 36px;
+  background: #555;
+  cursor: pointer;
+}
+
+input[type="range"]::-ms-thumb {
+  height: 36px;
+  width: 36px;
+  background: #555;
+  cursor: pointer;
+}
+/*#############Track##############*/
+
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  background: #ccc;
+}
+
+input[type="range"]:active::-webkit-slider-runnable-track {
+  background: #d6d6d6;
+}
+
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  background: #ccc;
+}
+
+input[type="range"]::-ms-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+input[type="range"]::-ms-fill-lower {
+  background: #ccc;
+}
+
+input[type="range"]:focus::-ms-fill-lower {
+  background: #ddd;
+}
+
+input[type="range"]::-ms-fill-upper {
+  background: #ccc;
+}
+
+input[type="range"]:focus::-ms-fill-upper {
+  background: #ddd;
+}
+
+
+h3{margin-top: 1em;}
+    </style>
+
+</head>
+
+    <body>
+
+        
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm">
+            <h1>Booknook control panel</h1>
+        </div>
+    </div>
+
+    <div data-led='000'>
+        <div class="row">
+            <div class="col-sm">
+                <h3 class="text-center value">Led Status : </h3>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-sm-1 text-right">
+                <button class="btn btn-sm btn-dark off">Off</button>
+            </div>
+            <div class="col-sm-10">
+                <input class='led-brightness' type='range' max='2000' min='0' />
+            </div>
+            <div class="col-sm-1 text-left">
+                <button class="btn btn-sm btn-primary on">On</button>
+            </div>
+        </div>  
+    </div>
+
+    <div data-led='001'>
+        <div class="row">
+            <div class="col-sm">
+                <h3 class="text-center value">Led Status : </h3>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-sm-1 text-right">
+                <button class="btn btn-sm btn-dark off">Off</button>
+            </div>
+            <div class="col-sm-10">
+                <input class='led-brightness' type='range' max='2000' min='0' />
+            </div>
+            <div class="col-sm-1 text-left">
+                <button class="btn btn-sm btn-primary on">On</button>
+            </div>
+        </div>  
+    </div>
+    <div data-led='002'>
+        <div class="row">
+            <div class="col-sm">
+                <h3 class="text-center value">Led Status : </h3>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-sm-1 text-right">
+                <button class="btn btn-sm btn-dark off">Off</button>
+            </div>
+            <div class="col-sm-10">
+                <input class='led-brightness' type='range' max='2000' min='0' />
+            </div>
+            <div class="col-sm-1 text-left">
+                <button class="btn btn-sm btn-primary on">On</button>
+            </div>
+        </div>  
+    </div>
+    <div data-led='003'>
+        <div class="row">
+            <div class="col-sm">
+                <h3 class="text-center value">Led Status : </h3>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-sm-1 text-right">
+                <button class="btn btn-sm btn-dark off">Off</button>
+            </div>
+            <div class="col-sm-10">
+                <input class='led-brightness' type='range' max='2000' min='0' />
+            </div>
+            <div class="col-sm-1 text-left">
+                <button class="btn btn-sm btn-primary on">On</button>
+            </div>
+        </div>  
+    </div>
+    <div data-led='004'>
+        <div class="row">
+            <div class="col-sm">
+                <h3 class="text-center value">Led Status : </h3>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-sm-1 text-right">
+                <button class="btn btn-sm btn-dark off">Off</button>
+            </div>
+            <div class="col-sm-10">
+                <input class='led-brightness' type='range' max='2000' min='0' />
+            </div>
+            <div class="col-sm-1 text-left">
+                <button class="btn btn-sm btn-primary on">On</button>
+            </div>
+        </div>  
+    </div>
+    <div data-led='005'>
+        <div class="row">
+            <div class="col-sm">
+                <h3 class="text-center value">Led Status : </h3>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-sm-1 text-right">
+                <button class="btn btn-sm btn-dark off">Off</button>
+            </div>
+            <div class="col-sm-10">
+                <input class='led-brightness' type='range' max='2000' min='0' />
+            </div>
+            <div class="col-sm-1 text-left">
+                <button class="btn btn-sm btn-primary on">On</button>
+            </div>
+        </div>  
+    </div>
+    <div data-led='006'>
+        <div class="row">
+            <div class="col-sm">
+                <h3 class="text-center value">Led Status : </h3>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-sm-1 text-right">
+                <button class="btn btn-sm btn-dark off">Off</button>
+            </div>
+            <div class="col-sm-10">
+                <input class='led-brightness' type='range' max='2000' min='0' />
+            </div>
+            <div class="col-sm-1 text-left">
+                <button class="btn btn-sm btn-primary on">On</button>
+            </div>
+        </div>  
+    </div>
+    <div data-led='007'>
+        <div class="row">
+            <div class="col-sm">
+                <h3 class="text-center value">Led Status : </h3>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-sm-1 text-right">
+                <button class="btn btn-sm btn-dark off">Off</button>
+            </div>
+            <div class="col-sm-10">
+                <input class='led-brightness' type='range' max='2000' min='0' />
+            </div>
+            <div class="col-sm-1 text-left">
+                <button class="btn btn-sm btn-primary on">On</button>
+            </div>
+        </div>  
+    </div>
+
+
+
+</div>
+    <script>
+
+        document.querySelectorAll('.led-brightness').forEach(function(i) {
+            i.addEventListener('change', (event) => {
+                var xhr = new XMLHttpRequest();
+                var group = event.target.parentElement.parentElement.parentElement;
+                var led = group.dataset.led;
+                var value = event.target.value;
+                xhr.open('POST', `http://192.168.0.243\\${led}\\${value}`, true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send('');
+
+                group.querySelector(`.value`).innerText = `Led ${led}: ${value / 2000 *100}%`;
+
+            });
+        });
+
+        document.querySelectorAll('.on').forEach(function(i) {
+            i.addEventListener('click', (event) => {
+                var group = event.target.parentElement.parentElement.parentElement;
+                var range = group.querySelector(`.led-brightness`);
+                range.value = 2000;
+                range.dispatchEvent(new Event('change'));
+            });
+        });
+
+        document.querySelectorAll('.off').forEach(function(i) {
+            i.addEventListener('click', (event) => {
+                var group = event.target.parentElement.parentElement.parentElement;
+                var range = group.querySelector(`.led-brightness`);
+                range.value = 0;
+                range.dispatchEvent(new Event('change'));
+            });
+        });
+
+
+
+    </script>
+
+    </body>

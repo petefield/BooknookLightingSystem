@@ -1,0 +1,3 @@
+Y:\repos\led\client\obj\Debug\netcoreapp3.1\client.csprojAssemblyReference.cache
+Y:\repos\led\client\obj\Debug\netcoreapp3.1\client.AssemblyInfoInputs.cache
+Y:\repos\led\client\obj\Debug\netcoreapp3.1\client.AssemblyInfo.cs
