@@ -1,4 +1,4 @@
-#include <string>
+#include <string.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 const char *ssid = "SKYEDD04";
@@ -6,7 +6,7 @@ const char *password = "NCCPSQBCSM";
 
 WiFiServer server(80);
 
-int leds[8] = {D1, D2, D3, D4, D5, D6, D7, D8};
+int leds[8] = {D1, D2, D4, D3, D7, D5, D6, D8};
 
 // Current time
 unsigned long currentTime = millis();
@@ -54,14 +54,18 @@ void setup()
     Serial.print(".");
   }
 
-  digitalWrite(leds[0], LOW);
-
   // Print local IP address and start web server
   Serial.println("");
   Serial.println("WiFi connected.");
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
   server.begin();
+
+  for (int i = 0; i < 8; i++)
+  {
+    digitalWrite(leds[i], HIGH);
+    delay(100);
+  }
 }
 
 
@@ -83,20 +87,16 @@ void GetRequestInfo()
       if (client.available()) {
         char c = client.read();
         header += c;
-        // if you've gotten to the end of the line (received a newline
-        // character) and the line is blank, the http request has ended,
-        // so you can send a reply
         if (c == '\n' && currentLineIsBlank) {
           processRequest(header);
-          Serial.println(response.c_str());
           client.println(response.c_str());    
+          delay(2);
+          client.stop();
           break;
         }
         if (c == '\n') {
-          // you're starting a new line
           currentLineIsBlank = true;
         } else if (c != '\r') {
-          // you've gotten a character on the current line
           currentLineIsBlank = false;
         }
       }
@@ -112,32 +112,59 @@ void appendLineToResponse(std::string s){
 
 void GET(std::string header)
 {
-    appendLineToResponse("HTTP/1.1 200 OK ");
-    appendLineToResponse("Content-type:text/html");
-    appendLineToResponse("Connection: close");
-    appendLineToResponse("");
-    appendLineToResponse("<!DOCTYPE html><body style='margin:0;padding:0'><iframe src='http://booknooks.azurewebsites.net/api/control' style='display:block;width:100vw;height:100vh;max-width:100%;margin:0;padding:0;border:0;box-sizing:border-box;'></iframe></body>");
+  appendLineToResponse("HTTP/1.1 200 OK ");
+  appendLineToResponse("Content-type:text/html");
+  appendLineToResponse("Connection: close");
+  appendLineToResponse("");
+  appendLineToResponse("<!DOCTYPE html><body style='margin:0;padding:0'><iframe src='http://booknooks.azurewebsites.net/api/control' style='display:block;width:100vw;height:100vh;max-width:100%;margin:0;padding:0;border:0;box-sizing:border-box;'></iframe></body>");
+}
+
+void GETSTATUS(std::string header)
+{
+  appendLineToResponse("HTTP/1.1 200 OK ");
+  appendLineToResponse("Content-type:application/json");
+  appendLineToResponse("Connection: close");
+  appendLineToResponse("");
+
+  appendLineToResponse("{");
+  appendLineToResponse("  [");
+
+  for (int i = 0; i < 8; i++)
+  {
+    String path(" {");
+    path += i;
+    path += ",";
+    path += analogRead(leds[i]);
+    path += "]";
+    appendLineToResponse(path.c_str());
+  }
+
+  appendLineToResponse(" ]");
+
+  appendLineToResponse("}");
+
+  appendLineToResponse("<!DOCTYPE html><body style='margin:0;padding:0'><iframe src='http://booknooks.azurewebsites.net/api/control' style='display:block;width:100vw;height:100vh;max-width:100%;margin:0;padding:0;border:0;box-sizing:border-box;'></iframe></body>");
 }
 
 void FAVICON(std::string header)
 {
-    appendLineToResponse("HTTP/1.1 304 OK ");
-    appendLineToResponse("location: http://lh3.googleusercontent.com/-TjhCYH8RLm0/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclfht1e1794nzoQgwyKRtc0TJt2tQ.CMID/s64-c/photo.jpg");
-    appendLineToResponse("<!DOCTYPE html><body style='margin:0;padding:0'><iframe src='http://booknooks.azurewebsites.net/api/control' style='display:block;width:100vw;height:100vh;max-width:100%;margin:0;padding:0;border:0;box-sizing:border-box;'></iframe></body>");
+  appendLineToResponse("HTTP/1.1 304 OK ");
+  appendLineToResponse("location: http://lh3.googleusercontent.com/-TjhCYH8RLm0/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclfht1e1794nzoQgwyKRtc0TJt2tQ.CMID/s64-c/photo.jpg");
+  appendLineToResponse("<!DOCTYPE html><body style='margin:0;padding:0'><iframe src='http://booknooks.azurewebsites.net/api/control' style='display:block;width:100vw;height:100vh;max-width:100%;margin:0;padding:0;border:0;box-sizing:border-box;'></iframe></body>");
 }
 
 void POST(std::string header)
 {
-    int led = std::atoi(header.substr(6, 6 + 3).c_str());
-    int brightness = std::atoi(header.substr(10, 10 + 4).c_str());
-    Serial.println(led);
-    Serial.println(brightness);
-    analogWrite(leds[led], brightness);
-    appendLineToResponse("HTTP/1.1 204 OK");
-      appendLineToResponse("Access-Control-Allow-Origin: http://booknooks.azurewebsites.net");
+  int led = std::atoi(header.substr(6, 6 + 3).c_str());
+  int brightness = std::atoi(header.substr(10, 10 + 4).c_str());
+  Serial.println(led);
+  Serial.println(brightness);
+  analogWrite(leds[led], brightness);
+  appendLineToResponse("HTTP/1.1 204 OK");
+  appendLineToResponse("Access-Control-Allow-Origin: http://booknooks.azurewebsites.net");
   appendLineToResponse("Access-Control-Allow-Headers: *");
   appendLineToResponse("Access-Control-Allow-Methods: POST, GET, OPTIONS");
-    appendLineToResponse("Connection: close");
+  appendLineToResponse("Connection: close");
 }
 
 void OPTIONS(std::string header)
@@ -150,8 +177,8 @@ void OPTIONS(std::string header)
 
 void BadRequest(std::string header)
 {
-    appendLineToResponse("HTTP/1.1 400 BAD request ");
-    appendLineToResponse("Connection: close");
+  appendLineToResponse("HTTP/1.1 400 BAD request ");
+  appendLineToResponse("Connection: close");
 }
 
 void processRequest(std::string header)
@@ -164,6 +191,11 @@ void processRequest(std::string header)
   {
     Serial.println("Method: GET  \r\nUrl: /");
     GET(header);
+  }
+  else if (header.find("GET /status ") != std::string::npos)
+  {
+    Serial.println("Method: GET  \r\nUrl: /");
+    GETSTATUS(header);
   }
   else if (header.find("GET /favicon.ico ") != std::string::npos)
   {
