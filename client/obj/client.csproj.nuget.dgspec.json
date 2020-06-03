@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "Y:\\repos\\led\\client\\client.csproj": {}
+    "/home/pete/nas/repos/led/client/client.csproj": {}
   },
   "projects": {
-    "Y:\\repos\\led\\client\\client.csproj": {
+    "/home/pete/nas/repos/led/client/client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "Y:\\repos\\led\\client\\client.csproj",
+        "projectUniqueName": "/home/pete/nas/repos/led/client/client.csproj",
         "projectName": "client",
-        "projectPath": "Y:\\repos\\led\\client\\client.csproj",
-        "packagesPath": "C:\\Users\\peter578\\.nuget\\packages\\",
-        "outputPath": "Y:\\repos\\led\\client\\obj\\",
+        "projectPath": "/home/pete/nas/repos/led/client/client.csproj",
+        "packagesPath": "/home/pete/.nuget/packages/",
+        "outputPath": "/home/pete/nas/repos/led/client/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "Y:\\repos\\NuGet.Config",
-          "C:\\Users\\peter578\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/pete/nas/repos/nuget.config",
+          "/home/pete/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -40,22 +36,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "dependencies": {
-            "Google.Protobuf": {
-              "target": "Package",
-              "version": "[3.11.4, )"
-            },
-            "Grpc.Net.Client": {
-              "target": "Package",
-              "version": "[2.28.0, )"
-            },
-            "Grpc.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.28.1, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -71,7 +51,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.201/RuntimeIdentifierGraph.json"
         }
       }
     }

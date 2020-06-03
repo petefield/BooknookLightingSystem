@@ -142,7 +142,7 @@ h3{margin-top: 1em;}
                 <button class="btn btn-sm btn-dark off">Off</button>
             </div>
             <div class="col-sm-10">
-                <input class='led-brightness' type='range' max='2000' min='0' />
+                <input class='led-brightness' type='range' max='1023' min='0' />
             </div>
             <div class="col-sm-1 text-left">
                 <button class="btn btn-sm btn-primary on">On</button>
@@ -161,7 +161,7 @@ h3{margin-top: 1em;}
                 <button class="btn btn-sm btn-dark off">Off</button>
             </div>
             <div class="col-sm-10">
-                <input class='led-brightness' type='range' max='2000' min='0' />
+                <input class='led-brightness' type='range' max='1023' min='0' />
             </div>
             <div class="col-sm-1 text-left">
                 <button class="btn btn-sm btn-primary on">On</button>
@@ -179,7 +179,7 @@ h3{margin-top: 1em;}
                 <button class="btn btn-sm btn-dark off">Off</button>
             </div>
             <div class="col-sm-10">
-                <input class='led-brightness' type='range' max='2000' min='0' />
+                <input class='led-brightness' type='range' max='1023' min='0' />
             </div>
             <div class="col-sm-1 text-left">
                 <button class="btn btn-sm btn-primary on">On</button>
@@ -197,7 +197,7 @@ h3{margin-top: 1em;}
                 <button class="btn btn-sm btn-dark off">Off</button>
             </div>
             <div class="col-sm-10">
-                <input class='led-brightness' type='range' max='2000' min='0' />
+                <input class='led-brightness' type='range' max='1023' min='0' />
             </div>
             <div class="col-sm-1 text-left">
                 <button class="btn btn-sm btn-primary on">On</button>
@@ -215,7 +215,7 @@ h3{margin-top: 1em;}
                 <button class="btn btn-sm btn-dark off">Off</button>
             </div>
             <div class="col-sm-10">
-                <input class='led-brightness' type='range' max='2000' min='0' />
+                <input class='led-brightness' type='range' max='1023' min='0' />
             </div>
             <div class="col-sm-1 text-left">
                 <button class="btn btn-sm btn-primary on">On</button>
@@ -233,7 +233,7 @@ h3{margin-top: 1em;}
                 <button class="btn btn-sm btn-dark off">Off</button>
             </div>
             <div class="col-sm-10">
-                <input class='led-brightness' type='range' max='2000' min='0' />
+                <input class='led-brightness' type='range' max='1023' min='0' />
             </div>
             <div class="col-sm-1 text-left">
                 <button class="btn btn-sm btn-primary on">On</button>
@@ -251,7 +251,7 @@ h3{margin-top: 1em;}
                 <button class="btn btn-sm btn-dark off">Off</button>
             </div>
             <div class="col-sm-10">
-                <input class='led-brightness' type='range' max='2000' min='0' />
+                <input class='led-brightness' type='range' max='1023' min='0' />
             </div>
             <div class="col-sm-1 text-left">
                 <button class="btn btn-sm btn-primary on">On</button>
@@ -269,7 +269,7 @@ h3{margin-top: 1em;}
                 <button class="btn btn-sm btn-dark off">Off</button>
             </div>
             <div class="col-sm-10">
-                <input class='led-brightness' type='range' max='2000' min='0' />
+                <input class='led-brightness' type='range' max='1023' min='0' />
             </div>
             <div class="col-sm-1 text-left">
                 <button class="btn btn-sm btn-primary on">On</button>
@@ -277,31 +277,18 @@ h3{margin-top: 1em;}
         </div>  
     </div>
 
-
-
 </div>
     <script>
 
         document.querySelectorAll('.led-brightness').forEach(function(i) {
-            i.addEventListener('change', (event) => {
-                var xhr = new XMLHttpRequest();
-                var group = event.target.parentElement.parentElement.parentElement;
-                var led = group.dataset.led;
-                var value = event.target.value;
-                xhr.open('POST', `http://192.168.0.243\\${led}\\${value}`, true);
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.send('');
-
-                group.querySelector(`.value`).innerText = `Led ${led}: ${value / 2000 *100}%`;
-
-            });
+    hhhhhhhhhhhhhhh
         });
 
         document.querySelectorAll('.on').forEach(function(i) {
             i.addEventListener('click', (event) => {
                 var group = event.target.parentElement.parentElement.parentElement;
                 var range = group.querySelector(`.led-brightness`);
-                range.value = 2000;
+                range.value = 1023;
                 range.dispatchEvent(new Event('change'));
             });
         });
@@ -315,8 +302,6 @@ h3{margin-top: 1em;}
             });
         });
 
-
-
     </script>
 
-    </body>
+    </body>x 
