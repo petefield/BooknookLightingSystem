@@ -4,6 +4,7 @@
 #include <EEPROM.h>
 #include <DNSServer.h>
 #include <pins_arduino.h>
+#include <ESP8266mDNS.h>
 
 //NCCPSQBCSM
 WiFiServer server(80);
@@ -53,9 +54,9 @@ bool CreateAccessPoint()
 
 bool ConnectAsClient()
 {
-    int count =0;
+    int count = 0;
     WiFi.softAPdisconnect();
-    WiFi.hostname("booknook.local");
+    WiFi.hostname("booknook");
 
     while (WiFi.status() != WL_CONNECTED & count < 25)                                                                                                                                                                                                                            
     {
@@ -66,11 +67,19 @@ bool ConnectAsClient()
       count++;
     }
     
-    WiFi.hostname("booknook.local");
+    WiFi.hostname("booknook");
 
     Serial.println("WiFi connected.");
     Serial.printf(" IP address: %s \r\n Hostname: %s \r\n", WiFi.localIP().toString().c_str(), WiFi.hostname().c_str());
     
+    if(!MDNS.begin("booknook")){
+      Serial.println("Error setting up mDNS");
+    }
+    else{
+      MDNS.addService("http", "tcp", 80);
+      Serial.println("mDNS server started");
+    }
+
     return true;
 }
 
@@ -78,7 +87,8 @@ void setup()
 {
   Serial.begin(115200);
   EEPROM.begin(512);
-
+  delay(10);
+  Serial.println('\n');
   for (int i = 0; i < 8; i++) {
       pinMode(leds[i], OUTPUT);
       analogWrite(leds[i], 0);
@@ -106,6 +116,7 @@ void setup()
 
 void loop()
 {
+  MDNS.update();
   dnsServer.processNextRequest();
   GetRequestInfo();
 
@@ -166,15 +177,18 @@ void GET_GENERATE_204(std::string header)
     "<head>"
     "  <meta charset='utf-8'>"
     "  <meta name='viewport' content='width=device-width, initial-scale=1'>"
+    "  <style> "
+        "div {margin-bottom:10px}"
+    "<style>"
     "</head>"
     "<body>"
     "<form action='config' method='POST' name='myForm' >"
     " <div>"
-    "  <label>SSID:</label>"  
+    "  <label style='width:150px'>SSID:</label>"  
     "  <input id='ssid' name='ssid' type='text' placeholder='Enter SSID' />"
     " </div>"
     " <div>"
-    "  <label>password</label>"  
+    "  <labe style='width:150px'l>password</label>"  
     "  <input id='password' name='password' type='password' />"
     " </div>"
     " <input type='submit'/>"
