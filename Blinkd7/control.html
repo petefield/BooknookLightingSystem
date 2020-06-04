@@ -1,307 +1,227 @@
 <!DOCTYPE html>
 
-
 <head>
-    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO' crossorigin='anonymous'>    
-
-    <style>
-        /*Custom Base*/
-body {
-  background-color: #eee;
-}
-
-/* #container {
-  width: 300px;
-  margin: 20vw auto;
-} */
-
-input[type="range"] {
-  width: 300px;
-  background: transparent;
-}
-/*###################################*/
-/*###########Responsive Range########*/
-/*###################################*/
-/*##############Core Style###########*/
-
-input[type="range"] {
-  -webkit-appearance: none;
-  width: 100%;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-}
-
-input[type="range"]:focus {
-  outline: none;
-}
-
-input[type="range"]::-ms-track {
-  width: 100%;
-  cursor: pointer;
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
-}
-/*#############Thumb##############*/
-
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 36px;
-  width: 36px;
-  background: #555;
-  cursor: pointer;
-  margin-top: -12px;
-}
-
-input[type="range"]::-moz-range-thumb {
-  height: 36px;
-  width: 36px;
-  background: #555;
-  cursor: pointer;
-}
-
-input[type="range"]::-ms-thumb {
-  height: 36px;
-  width: 36px;
-  background: #555;
-  cursor: pointer;
-}
-/*#############Track##############*/
-
-input[type="range"]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 12px;
-  cursor: pointer;
-  background: #ccc;
-}
-
-input[type="range"]:active::-webkit-slider-runnable-track {
-  background: #d6d6d6;
-}
-
-input[type="range"]::-moz-range-track {
-  width: 100%;
-  height: 12px;
-  cursor: pointer;
-  background: #ccc;
-}
-
-input[type="range"]::-ms-track {
-  width: 100%;
-  height: 12px;
-  cursor: pointer;
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
-}
-
-input[type="range"]::-ms-fill-lower {
-  background: #ccc;
-}
-
-input[type="range"]:focus::-ms-fill-lower {
-  background: #ddd;
-}
-
-input[type="range"]::-ms-fill-upper {
-  background: #ccc;
-}
-
-input[type="range"]:focus::-ms-fill-upper {
-  background: #ddd;
-}
-
-
-h3{margin-top: 1em;}
-    </style>
-
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'
+        integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO' crossorigin='anonymous'>
 </head>
+<style>
 
-    <body>
+    .bkgrnd{
+        background-image: url(https://storageaccountbookna83a.blob.core.windows.net/pages/booknook.jpg);
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.1;
+    }
 
-        
+    /* The switch - the box around the slider */
+    .switch {
+        position: relative;
+        display: block;
+        width: 60px;
+        height: 34px;
+        margin: auto;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
 
-<div class="container">
+    /* Hide default HTML checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
 
-    <div class="row">
-        <div class="col-sm">
-            <h1>Booknook control panel</h1>
-        </div>
-    </div>
+    /* The slider */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
 
-    <div data-led='000'>
-        <div class="row">
-            <div class="col-sm">
-                <h3 class="text-center value">Led Status : </h3>
-            </div>
-        </div>
-        <div class="row" >
-            <div class="col-sm-1 text-right">
-                <button class="btn btn-sm btn-dark off">Off</button>
-            </div>
-            <div class="col-sm-10">
-                <input class='led-brightness' type='range' max='1023' min='0' />
-            </div>
-            <div class="col-sm-1 text-left">
-                <button class="btn btn-sm btn-primary on">On</button>
-            </div>
-        </div>  
-    </div>
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
 
-    <div data-led='001'>
-        <div class="row">
-            <div class="col-sm">
-                <h3 class="text-center value">Led Status : </h3>
-            </div>
-        </div>
-        <div class="row" >
-            <div class="col-sm-1 text-right">
-                <button class="btn btn-sm btn-dark off">Off</button>
-            </div>
-            <div class="col-sm-10">
-                <input class='led-brightness' type='range' max='1023' min='0' />
-            </div>
-            <div class="col-sm-1 text-left">
-                <button class="btn btn-sm btn-primary on">On</button>
-            </div>
-        </div>  
-    </div>
-    <div data-led='002'>
-        <div class="row">
-            <div class="col-sm">
-                <h3 class="text-center value">Led Status : </h3>
-            </div>
-        </div>
-        <div class="row" >
-            <div class="col-sm-1 text-right">
-                <button class="btn btn-sm btn-dark off">Off</button>
-            </div>
-            <div class="col-sm-10">
-                <input class='led-brightness' type='range' max='1023' min='0' />
-            </div>
-            <div class="col-sm-1 text-left">
-                <button class="btn btn-sm btn-primary on">On</button>
-            </div>
-        </div>  
-    </div>
-    <div data-led='003'>
-        <div class="row">
-            <div class="col-sm">
-                <h3 class="text-center value">Led Status : </h3>
-            </div>
-        </div>
-        <div class="row" >
-            <div class="col-sm-1 text-right">
-                <button class="btn btn-sm btn-dark off">Off</button>
-            </div>
-            <div class="col-sm-10">
-                <input class='led-brightness' type='range' max='1023' min='0' />
-            </div>
-            <div class="col-sm-1 text-left">
-                <button class="btn btn-sm btn-primary on">On</button>
-            </div>
-        </div>  
-    </div>
-    <div data-led='004'>
-        <div class="row">
-            <div class="col-sm">
-                <h3 class="text-center value">Led Status : </h3>
-            </div>
-        </div>
-        <div class="row" >
-            <div class="col-sm-1 text-right">
-                <button class="btn btn-sm btn-dark off">Off</button>
-            </div>
-            <div class="col-sm-10">
-                <input class='led-brightness' type='range' max='1023' min='0' />
-            </div>
-            <div class="col-sm-1 text-left">
-                <button class="btn btn-sm btn-primary on">On</button>
-            </div>
-        </div>  
-    </div>
-    <div data-led='005'>
-        <div class="row">
-            <div class="col-sm">
-                <h3 class="text-center value">Led Status : </h3>
-            </div>
-        </div>
-        <div class="row" >
-            <div class="col-sm-1 text-right">
-                <button class="btn btn-sm btn-dark off">Off</button>
-            </div>
-            <div class="col-sm-10">
-                <input class='led-brightness' type='range' max='1023' min='0' />
-            </div>
-            <div class="col-sm-1 text-left">
-                <button class="btn btn-sm btn-primary on">On</button>
-            </div>
-        </div>  
-    </div>
-    <div data-led='006'>
-        <div class="row">
-            <div class="col-sm">
-                <h3 class="text-center value">Led Status : </h3>
-            </div>
-        </div>
-        <div class="row" >
-            <div class="col-sm-1 text-right">
-                <button class="btn btn-sm btn-dark off">Off</button>
-            </div>
-            <div class="col-sm-10">
-                <input class='led-brightness' type='range' max='1023' min='0' />
-            </div>
-            <div class="col-sm-1 text-left">
-                <button class="btn btn-sm btn-primary on">On</button>
-            </div>
-        </div>  
-    </div>
-    <div data-led='007'>
-        <div class="row">
-            <div class="col-sm">
-                <h3 class="text-center value">Led Status : </h3>
-            </div>
-        </div>
-        <div class="row" >
-            <div class="col-sm-1 text-right">
-                <button class="btn btn-sm btn-dark off">Off</button>
-            </div>
-            <div class="col-sm-10">
-                <input class='led-brightness' type='range' max='1023' min='0' />
-            </div>
-            <div class="col-sm-1 text-left">
-                <button class="btn btn-sm btn-primary on">On</button>
-            </div>
-        </div>  
-    </div>
+    input:checked+.slider {
+        background-color: #2196F3;
+    }
 
-</div>
+    input:focus+.slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+    .led-brightness {
+        width: 100%;
+    }
+
+
+    img {
+        float: left;
+        margin-right: 15px;
+        padding-top: 5px;
+    }
+
+    h1 {
+        margin: 0 0 2px 0;
+    }
+
+    h2 {
+        margin: 2px;
+    }
+
+    header {
+        margin-bottom: 1em;
+        margin-left: 15px;
+        margin-top: 15px;
+
+    }
+
+    h1 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 2em;
+    }
+
+    h2 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 1.5em;
+    }
+
+    .frame {
+        padding: 10px;
+        border: 1px solid grey;
+        border-radius: 5px;
+        margin: 15px 0px;
+    }
+</style>
+
+<body>
+    <header>
+        <img
+            src='data:image/jpeg;base64,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' />
+        <h1>Booknook Lighting</h1>
+        <h2>Scene Setup</h2>
+    </header>
+    <div class="container-fluid">
+
+
+
+        <div class="row">
+            <div class="col ledholder" data-led='0'></div>
+            <div class="col ledholder" data-led='1'></div>
+        </div>
+        <div class="row">
+            <div class="col ledholder" data-led='2'></div>
+            <div class="col ledholder" data-led='3'></div>
+        </div>
+        <div class="row">
+            <div class="col ledholder" data-led='4'></div>
+            <div class="col ledholder" data-led='5'></div>
+        </div>
+        <div class="row">
+            <div class="col ledholder" data-led='6'></div>
+            <div class="col ledholder" data-led='7'></div>
+        </div>
+
+        <template id='ledholderTemplate'>
+            <div class="frame">
+                <h3 class="text-center value">Led Status : </h3>
+
+                <label class="switch">
+                    <input type="checkbox" class="toggle">
+                    <span class="slider round"></span>
+                </label>
+                <input class='led-brightness' type='range' max='1023' min='0' />
+            </div>
+        </template>
+
+    </div>
     <script>
 
-        document.querySelectorAll('.led-brightness').forEach(function(i) {
-    hhhhhhhhhhhhhhh
+        //this value gets replaced when this paged is served.
+        var ipAddress = "booknookLocalIP";
+
+        document.querySelectorAll('.ledholder').forEach(function (i) {
+            var temp = document.getElementById("ledholderTemplate");
+            var clon = temp.content.cloneNode(true);
+            i.appendChild(clon);
         });
 
-        document.querySelectorAll('.on').forEach(function(i) {
-            i.addEventListener('click', (event) => {
-                var group = event.target.parentElement.parentElement.parentElement;
+        var req = new XMLHttpRequest();
+        req.responseType = 'json';
+        req.open('GET', `http://${ipAddress}\\status`, true);
+        req.onload = function () {
+            var jsonResponse = req.response;
+            console.log(jsonResponse);
+            for (i = 0; i < jsonResponse.ledstatus.length; i++) {
+                var value = jsonResponse.ledstatus[i];
+                var group = document.querySelector(`div[data-led='${i}']`);
+                group.querySelector(`.value`).innerText = `Led ${i}:  ${Math.floor(value / 1023 * 100)}%`;
                 var range = group.querySelector(`.led-brightness`);
-                range.value = 1023;
-                range.dispatchEvent(new Event('change'));
+                range.value = value;
+                group.querySelector(`.toggle`).checked = (value > 0)
+
+            }
+        };
+        req.send(null);
+
+        document.querySelectorAll('.led-brightness').forEach(function (i) {
+
+            i.addEventListener('change', (event) => {
+                var xhr = new XMLHttpRequest();
+                var group = event.target.parentElement.parentElement;
+                var led = group.dataset.led;
+                var value = event.target.value;
+                xhr.open('POST', `http://${ipAddress}\\${led}\\${value}`, true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send('');
+                group.querySelector(`.value`).innerText = `Led ${led}: ${Math.floor(value / 1023 * 100)}%`;
+                group.querySelector(`.toggle`).checked = (value > 0)
+
             });
         });
 
-        document.querySelectorAll('.off').forEach(function(i) {
+        document.querySelectorAll('.toggle').forEach(function (i) {
             i.addEventListener('click', (event) => {
-                var group = event.target.parentElement.parentElement.parentElement;
+                var cb = event.target;
+                var group = cb.parentElement.parentElement.parentElement;
                 var range = group.querySelector(`.led-brightness`);
-                range.value = 0;
+                range.value = cb.checked ? 1023 : 0;
                 range.dispatchEvent(new Event('change'));
             });
         });
 
     </script>
 
-    </body>x 
+</body>
