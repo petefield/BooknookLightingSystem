@@ -249,7 +249,7 @@ void Options() {
 }
 
 void  WriteBrightnessValue(int led, int brightness) {
-    SetLEDBrightness(led, brightness);
+     SetLEDBrightness(led, brightness);
 
     unsigned char bytes[4];
     bytes[0] = (brightness >> 24) & 0xFF;
